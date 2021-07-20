@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Stock Market Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <style>
+      .icon {
+        background-color: white; /* Blue background */
+        border: none; /* Remove borders */
+      }
+      
+
+      div#loading {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background: url(/static/loader.gif) 50% 50% no-repeat;
+        cursor: wait;
+        text-align:center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="loading">
+      <h1 style="margin: auto; position: relative;">Predicting - This May Take A Few Seconds...</h1>
+    </div>
+    <div id="content">
+    <form class="login" action = "{{ url_for('insertintotable') }}" method = "POST">
+    <div class="wrapper">
+      <div class="search-input" id="test">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type a Company Name to Search" name="nm">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon">
+        <button class="icon" onclick="loading();"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+
+    <script src="{{ url_for('static', filename='js1/suggestions.js')}}"></script>
+    <script src="{{ url_for('static', filename='js1/script1.js')}}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='jquery.min.js')}}"></script> 
+
+    <script type="text/javascript">// <![CDATA[
+      function loading(){
+          $("#loading").show();
+          $("#content").hide();
+          document.body.style.backgroundImage = "none";  
+      }
+    // ]]></script>
+
+  </body>
+</html>
